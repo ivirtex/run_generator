@@ -74,11 +74,11 @@ class Wynik extends StatelessWidget {
                       second: "Time",
                     ),
                     DataCard(
-                      main: "442",
+                      main: calories,
                       second: "Calories",
                     ),
                     DataCard(
-                      main: "23 m",
+                      main: "$elevation m",
                       second: "Elevation",
                     ),
                     SizedBox(width: 10)
@@ -89,7 +89,7 @@ class Wynik extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     DataCard(
-                      main: "159",
+                      main: hr,
                       second: "Heart rate",
                     ),
                     DataCard(
@@ -97,7 +97,7 @@ class Wynik extends StatelessWidget {
                       second: "Top speed",
                     ),
                     DataCard(
-                      main: "94",
+                      main: score,
                       second: "Score",
                     ),
                     SizedBox(width: 10)

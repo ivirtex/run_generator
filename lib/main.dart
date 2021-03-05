@@ -36,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
   final controllerRodzajT = TextEditingController();
   final controllerOdleglosc = TextEditingController();
   final controllerDlugoscT = TextEditingController();
-  final Random random = Random();
+  Random random = Random();
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +116,6 @@ class _MainScreenState extends State<MainScreen> {
 
 String calculateV(double km) {
   Random random = Random();
-  double v = km / random.nextInt(3) + 1;
+  double v = km / (random.nextInt(2) + 1);
   return v.toString();
 }
