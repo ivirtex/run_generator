@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'custom_text_form_field.dart';
 import 'results_screen.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainScreen(title: 'Wprowadzanie danych'),
+      home: MainScreen(title: "Input"),
     );
   }
 }
@@ -31,9 +32,11 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final controllerData = TextEditingController();
+  final controllerGodzina = TextEditingController();
   final controllerRodzajT = TextEditingController();
   final controllerOdleglosc = TextEditingController();
   final controllerDlugoscT = TextEditingController();
+  final Random random = Random();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +54,10 @@ class _MainScreenState extends State<MainScreen> {
               CustomTextFormField(
                 text: "Data [DD.MM]",
                 controller: controllerData,
+              ),
+              CustomTextFormField(
+                text: "Godzina [HH:MM]",
+                controller: controllerGodzina,
               ),
               CustomTextFormField(
                 text: "Rodzaj treningu [cokolwiek]",
@@ -78,9 +85,15 @@ class _MainScreenState extends State<MainScreen> {
               MaterialPageRoute(
                 builder: (context) => Wynik(
                   data: controllerData.text,
+                  godzina: controllerGodzina.text,
                   rodzajT: controllerRodzajT.text,
                   odleglosc: controllerOdleglosc.text,
                   dlugoscT: controllerDlugoscT.text,
+                  v: calculateV(double.parse(controllerOdleglosc.text)),
+                  calories: random.nextInt(600).toString(),
+                  elevation: random.nextInt(100).toString(),
+                  hr: (random.nextInt(140) + 60).toString(),
+                  score: random.nextInt(100).toString(),
                 ),
               ),
             );
@@ -99,4 +112,10 @@ class _MainScreenState extends State<MainScreen> {
     controllerDlugoscT.dispose();
     super.dispose();
   }
+}
+
+String calculateV(double km) {
+  Random random = Random();
+  double v = km / random.nextInt(3) + 1;
+  return v.toString();
 }

@@ -3,12 +3,29 @@ import 'data_card.dart';
 import 'constants.dart';
 
 class Wynik extends StatelessWidget {
-  Wynik({this.data, this.rodzajT, this.odleglosc, this.dlugoscT});
+  Wynik({
+    this.data,
+    this.godzina,
+    this.rodzajT,
+    this.odleglosc,
+    this.dlugoscT,
+    this.v,
+    this.hr,
+    this.calories,
+    this.elevation,
+    this.score,
+  });
 
   final String data;
+  final String godzina;
   final String rodzajT;
   final String odleglosc;
   final String dlugoscT;
+  final String v;
+  final String hr;
+  final String calories;
+  final String elevation;
+  final String score;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +44,7 @@ class Wynik extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "$data - 9:14",
+              "$data - $godzina",
               style: Constants.data,
             ),
             SizedBox(height: 10),
@@ -76,7 +93,7 @@ class Wynik extends StatelessWidget {
                       second: "Heart rate",
                     ),
                     DataCard(
-                      main: "10.7",
+                      main: "$v km/h",
                       second: "Top speed",
                     ),
                     DataCard(
