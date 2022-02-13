@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Run Generator papiez',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -39,45 +39,58 @@ class _MainScreenState extends State<MainScreen> {
   Random random = Random();
 
   @override
+  void dispose() {
+    super.dispose();
+
+    controllerData.dispose();
+    controllerGodzina.dispose();
+    controllerRodzajT.dispose();
+    controllerOdleglosc.dispose();
+    controllerDlugoscT.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomTextFormField(
-                text: "Data [DD.MM]",
-                controller: controllerData,
-              ),
-              CustomTextFormField(
-                text: "Godzina [HH:MM]",
-                controller: controllerGodzina,
-              ),
-              CustomTextFormField(
-                text: "Rodzaj treningu [cokolwiek]",
-                controller: controllerRodzajT,
-              ),
-              CustomTextFormField(
-                text: "Odległość [KM]",
-                controller: controllerOdleglosc,
-              ),
-              CustomTextFormField(
-                text: "Długość treningu [HH:MM:SS]",
-                controller: controllerDlugoscT,
-              ),
-              SizedBox(height: 20),
-            ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomTextFormField(
+                  text: "Data [DD.MM]",
+                  controller: controllerData,
+                ),
+                CustomTextFormField(
+                  text: "Godzina [HH:MM]",
+                  controller: controllerGodzina,
+                ),
+                CustomTextFormField(
+                  text: "Rodzaj treningu [cokolwiek]",
+                  controller: controllerRodzajT,
+                ),
+                CustomTextFormField(
+                  text: "Odległość [KM]",
+                  controller: controllerOdleglosc,
+                ),
+                CustomTextFormField(
+                  text: "Długość treningu [HH:MM:SS]",
+                  controller: controllerDlugoscT,
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Text("Trenuj"),
+        child: Text("Go"),
         onPressed: () {
           if (_formKey.currentState.validate()) {
             Navigator.push(
@@ -89,11 +102,11 @@ class _MainScreenState extends State<MainScreen> {
                   rodzajT: controllerRodzajT.text,
                   odleglosc: controllerOdleglosc.text,
                   dlugoscT: controllerDlugoscT.text,
-                  v: calculateV(double.parse(controllerOdleglosc.text)),
-                  calories: random.nextInt(600).toString(),
+                  v: calculateRandomV(),
+                  calories: (random.nextInt(600) + 200).toString(),
                   elevation: random.nextInt(100).toString(),
                   hr: (random.nextInt(140) + 60).toString(),
-                  score: random.nextInt(100).toString(),
+                  score: (random.nextInt(80) + 20).toString(),
                 ),
               ),
             );
@@ -102,20 +115,10 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
-
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    controllerData.dispose();
-    controllerRodzajT.dispose();
-    controllerOdleglosc.dispose();
-    controllerDlugoscT.dispose();
-    super.dispose();
-  }
 }
 
-String calculateV(double km) {
+String calculateRandomV() {
   Random random = Random();
-  double v = km / (random.nextInt(2) + 1);
-  return v.toString();
+  double v = (random.nextInt(20) + 3) / (random.nextDouble() + 1);
+  return v.toStringAsPrecision(2);
 }
