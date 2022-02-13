@@ -4,16 +4,16 @@ import 'constants.dart';
 
 class Wynik extends StatelessWidget {
   Wynik({
-    this.data,
-    this.godzina,
-    this.rodzajT,
-    this.odleglosc,
-    this.dlugoscT,
-    this.v,
-    this.hr,
-    this.calories,
-    this.elevation,
-    this.score,
+    required this.data,
+    required this.godzina,
+    required this.rodzajT,
+    required this.odleglosc,
+    required this.dlugoscT,
+    required this.v,
+    required this.hr,
+    required this.calories,
+    required this.elevation,
+    required this.score,
   });
 
   final String data;

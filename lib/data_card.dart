@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DataCard extends StatelessWidget {
-  DataCard({this.main, this.second});
+  DataCard({required this.main, required this.second});
 
   final String main;
   final String second;
